@@ -1,9 +1,10 @@
 import React from "react";
 
-const Login = () => {
-  return (
-    <div></div>
-  );
+const Login = async () => {
+  const res = await fetch("/api/recommend/students");
+  const students = await res.json();
+
+  return <div>{students}</div>;
 };
 
 export default Login;

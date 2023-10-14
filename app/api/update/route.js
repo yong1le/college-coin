@@ -1,8 +1,8 @@
 import clientPromise from "@/app/lib/dbConnect";
 
-export async function GET(request) {
+export async function POST(request) {
   const client = await clientPromise;
-  const students = client.db("CollegeCoin").collection("students")
+  const lenders = client.db("CollegeCoin").collection("lenders")
   
   Response.json({});
 }
