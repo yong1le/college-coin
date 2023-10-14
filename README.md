@@ -1,34 +1,30 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# College Coin
+Simplifying loan hunting for students.
 
-## Getting Started
+## Stacks
 
-First, run the development server:
+Documents the libraries and tools we will use and where they will be used.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+### [NextJS](https://nextjs.org/docs)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+NextJS will be used as the routing framework for our frontend application. Routes
+will be defined based on the file system routing technique Next implements.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+In addition to frontend routing, we will be using NextJS API routes to deploy
+serverless functions. An advantage to using this over a dedicated backend API
+is to keep our codebase contained under one repo and speed up development. NextJS
+API route handlers are ExpressJS complient, so there should be a low learning curve.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### [NextAuth](https://next-auth.js.org/getting-started/introduction)
 
-## Learn More
+NextAuth is an authentication library for NextJS. This allows users to signin/logup
+with a SSO instead of creating a new username/password pair.
 
-To learn more about Next.js, take a look at the following resources:
+### [MongoDB Atlas](https://www.mongodb.com/docs/drivers/node/current/)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Atlas will store information like student account information, loaner
+account information.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Some UI Library.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Thinking of possibly TailwindCSS.
