@@ -1,8 +1,12 @@
 import React from 'react'
 
-const Dashboard = () => {
+const Dashboard = ({ children }) => {
   return (
-    <div>Dashboard</div>
+    <div>
+      <header></header>
+      {children}
+      <footer></footer>
+    </div>
   )
 }
 
