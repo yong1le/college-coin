@@ -32,7 +32,7 @@ export async function GET(request) {
   const db = client.db("CollegeCoin");
   const loaners = db.collection("loaners");
 
-  const params = request.nextUrl.searchParams;
+  const params =request.nextUrl.searchParams;
   const email = params.get("email");
 
   const loan = await getLoanAmount(email, client);
