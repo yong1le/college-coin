@@ -1,13 +1,24 @@
-import React from 'react'
+import Lender from "@/app/components/Lender";
+import React from "react";
 
-const StudentDashboard = () => {
+const user = "jayden@gmail.com";
+
+const getLenders = async () => {
+  const res = await fetch(
+    `${process.env.BASE_URL}/api/recommend?email=${user}`,
+  );
+  return res.json();
+};
+
+const StudentDashboard = async () => {
+  const data = await getLenders();
   return (
-    <div>
-        <p>Lender:</p> 
-        <p>Email:</p>
-        <p>Lender's Logo:</p>
+    <div className="grid grid-cols-3 gap-6">
+      {data.map((e, i) => (
+        <Lender key={i} name={e.name} maxLoan={e.maxLoan} />
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default StudentDashboard
+export default StudentDashboard;

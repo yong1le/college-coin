@@ -4,7 +4,7 @@ export default function Home() {
       <h1 className="text-6xl font-bold">College Coin</h1>
       <a
         className="rounded-xl bg-slate-200 px-3 py-2 transition-all hover:scale-110"
-        href="/login"
+        href="/student/home"
       >
         Login/Sign Up
       </a>
