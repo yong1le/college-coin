@@ -1,14 +1,18 @@
-import clientPromise from "@/app/lib/dbConnect";
+import { MongoClient } from "mongodb";
 
 export async function PUT(request) {
+  const c = new MongoClient(process.env.MONGODB_URI);
+  const clientPromise = c.connect();
+
   const client = await clientPromise;
   const applications = client.db("CollegeCoin").collection("applications");
 
-  const form = await request.formData();
-  const amount = form.get("amount");
-  const purpose = form.get("purpose");
+  const body = await request.json();
+  const email = body.email;
+  const amount = body.amount;
+  const purpose = body.purpose;
 
-  const result = await applications.updateOne(
+  await applications.updateOne(
     {
       loaneeEmail: email,
     },
@@ -20,5 +24,6 @@ export async function PUT(request) {
     },
   );
 
-  Response.json(result);
+  client.close();
+  return Response.json({ status: "success" });
 }

@@ -1,4 +1,4 @@
-import clientPromise from "@/app/lib/dbConnect";
+import { MongoClient } from "mongodb";
 
 const getLoanAmount = async (email, client) => {
   const db = client.db("CollegeCoin");
@@ -28,11 +28,14 @@ const getCreditScore = async (email, client) => {
 };
 
 export async function GET(request) {
+  const c = new MongoClient(process.env.MONGODB_URI);
+  const clientPromise = c.connect();
+
   const client = await clientPromise;
   const db = client.db("CollegeCoin");
   const loaners = db.collection("loaners");
 
-  const params =request.nextUrl.searchParams;
+  const params = request.nextUrl.searchParams;
   const email = params.get("email");
 
   const loan = await getLoanAmount(email, client);
@@ -44,8 +47,8 @@ export async function GET(request) {
   // If both are successful, send personalized results, otherwise, send all
   if (loan && creditScore) {
     cursor = loaners.find({
-      minCredit: { $le: creditScore },
-      maxLoan: { $ge: loan },
+      minCredit: { $lte: creditScore },
+      maxLoan: { $gte: loan },
     });
   } else {
     cursor = loaners.find({});
@@ -55,5 +58,6 @@ export async function GET(request) {
     results.push(doc);
   }
 
+  client.close();
   return Response.json(results);
 }
