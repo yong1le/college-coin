@@ -1,11 +1,23 @@
 import Lender from "@/app/components/Lender";
 import React from "react";
+import { MongoClient } from "mongodb"
 
 const getLenders = async () => {
-  const res = await fetch(`${process.env.BASE_URL}/api/all`, {
-    cache: "no-cache",
-  });
-  return res.json();
+  const c = new MongoClient(process.env.MONGODB_URI);
+  const clientPromise = c.connect();
+  const client = await clientPromise;
+  const db = client.db("CollegeCoin");
+  const loaners = db.collection("loaners");
+
+  const results = [];
+  const cursor = loaners.find({});
+
+  for await (const doc of cursor) {
+    results.push(doc);
+  }
+
+  client.close()
+  return results;
 };
 
 const StudentDashboard = async () => {

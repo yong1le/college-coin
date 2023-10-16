@@ -31,7 +31,7 @@ const StudentApplication = () => {
           ref={amount}
           type="text"
           name="loan"
-          className="rounded-xl bg-orange-200 p-4"
+          className="rounded-xl p-4 bg-gradient-to-r from-orange-200 to-orange-300"
         />
         <label htmlFor="reasons" className="py-3 text-xl">
           Reasons for Loan:
@@ -41,7 +41,7 @@ const StudentApplication = () => {
           name="reasons"
           cols="30"
           rows="10"
-          className="resize-none rounded-xl bg-orange-200 p-4"
+          className="resize-none rounded-xl p-4 bg-gradient-to-r from-orange-200 to-orange-300"
         ></textarea>
         <button
           type="submit"
